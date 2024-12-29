@@ -1,0 +1,63 @@
+tep 1: Ensure Flask Server is Running
+Before using Postman, make sure your Flask server is running. Open a terminal or command prompt, navigate to the folder where your Python script (app.py) is located, and run:
+
+bash
+Copy code
+python app.py
+You should see something like:
+
+csharp
+Copy code
+ * Running on http://127.0.0.1:5000 (Press CTRL+C to quit)
+This confirms that Flask is running and ready to accept requests.
+
+Step 2: Open Postman
+Launch Postman on your computer.
+Click on the New button or the + sign to create a new request.
+Step 3: Set Up the Request in Postman
+Select POST Method:
+
+In Postman, choose the POST method from the dropdown next to the URL bar.
+Enter the API URL:
+
+In the URL bar, enter the Flask server's endpoint URL:
+arduino
+Copy code
+http://127.0.0.1:5000/predict
+Set Headers:
+
+Under the "Headers" tab, make sure you add the following header:
+makefile
+Copy code
+Key: Content-Type
+Value: application/json
+Enter JSON Body:
+
+Switch to the Body tab in Postman.
+Select raw and choose JSON from the dropdown list.
+In the text area, input the JSON data that matches the expected format for your API. For example:
+json
+Copy code
+{
+  "runs": 40,
+  "opponent": "Team A",
+  "ground": "Ground 1",
+  "date": "2024-12-01",
+  "match": 5,
+  "Match_No": 100
+}
+Step 4: Send the Request
+After setting up the request, click on the Send button in Postman.
+Step 5: View the Response
+Once the request is sent, Postman will display the response in the lower part of the window.
+You should see a JSON response similar to:
+json
+Copy code
+{
+  "Mean Squared Error": 123.45
+}
+This is the MSE value from your XGBoost model, indicating how well the model performed on the test data.
+Step 6: Troubleshooting
+If you encounter issues such as Connection Refused, ensure that the Flask server is running. If the Flask server is down or not correctly set up, Postman won’t be able to connect.
+Double-check that you're using the correct POST method and the right endpoint URL (http://127.0.0.1:5000/predict).
+By following these steps, you'll be able to test your Flask API from Postman and retrieve predictions from the model.
